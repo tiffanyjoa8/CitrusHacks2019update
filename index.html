@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset ="utf-8">
+        <meta name="viewport" content ="initial-scale=1, maximum-scale=1, user-scalable=yes">
+        <title>ArcGIS JavaScript Test: Creating JavaScript Starter App</title>
+        <style>
+            html, body, #viewDiv
+            {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
+<script src="https://js.arcgis.com/4.11/"></script>
+
+<script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/widgets/BasemapToggle",
+        "esri/widgets/BasemapGallery",
+        "esri/layers/FeatureLayer"
+      ], function(Map, MapView, BasemapToggle, BasemapGallery, FeatureLayer) {
+  
+          var map = new Map({
+            basemap: "topo-vector"
+          });
+  
+          var view = new MapView({
+            container: "viewDiv",
+            map: map,
+            center: [-118.71511,34.09042],
+            zoom: 11
+          });
+
+          var basemapToggle = new BasemapToggle({
+          view: view,
+          nextBasemap: "satellite"
+        });
+
+          var basemapGallery = new BasemapGallery({
+          view: view,
+          source: {
+            portal: {
+              url: "https://www.arcgis.com",
+              useVectorBasemaps: true  // Load vector tile basemaps
+            }
+          }
+        
+        });
+
+        //coffee shops
+        var featureLayer = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/ArcGIS/rest/services/LA_West_Coffee_Shops/FeatureServer"
+      });
+
+      //bus routes
+      var featureLayer2 = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/ArcGIS/rest/services/Bus_Routes/FeatureServer"
+      });
+
+      //trails
+      var featureLayer3 = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"
+      });
+
+      //all trails
+      var featureLayer4 = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/ArcGIS/rest/services/All_Trails/FeatureServer"
+      });
+
+      //parks and open spaces
+      var featureLayer5 = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Parks_and_Open_Space/FeatureServer/0"
+      });
+
+
+
+
+      map.add(featureLayer);
+      map.add(featureLayer2);
+      map.add(featureLayer5);
+      map.add(featureLayer3);
+      map.add(featureLayer4);
+     
+
+
+
+        view.ui.add(basemapToggle, "top-right"); // Add to the view
+        });
+
+
+
+
+        
+
+
+      </script>
+
+<center><font size="7"><b>The PATH to a Healthier Lifestyle (LA Edition)</b> </font></center>
+
+        </head>
+        <body>
+            <div id="viewDiv"></div>
+
+            <center>Hello there</center>
+        </body>
+
+
+        </html>
+
+
+
+
+
+
